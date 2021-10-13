@@ -1,3 +1,3 @@
 Gra na konkurs GEEK
 
-W tym branchu znajduje się scenariusz w wersji beta
+W tym branchu znajduje się scenariusz w wersji release
