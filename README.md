@@ -1,1 +1,0 @@
-Gra na konkurs GEEK
