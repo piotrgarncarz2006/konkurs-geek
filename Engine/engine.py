@@ -1,8 +1,9 @@
-#!/usr/bin/python3
 import pygame as pg
 import os
 import sys
 import numpy as np
+from pg.math import Vector2
+from math import *
 
 #colors that can be used anywhere in this project
 colors= {
@@ -31,9 +32,9 @@ class Engine:
         for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
             for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
                 self.win.blit(self.bg_img, (x, y))
+    #loads images that is inside a list
     def loadImages(self, elements):
         for e in elements:
-            print(e)
             e['img']= pg.image.load(e['img'])
     #draws content from list
     def draw(self, elements):
