@@ -2,7 +2,7 @@ import pygame as pg
 import os
 import sys
 import numpy as np
-from pg.math import Vector2
+from pygame.math import Vector2
 from math import *
 
 #colors that can be used anywhere in this project
