@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from engine import *
+from player import Player
 import json
 
 #returns path of this directory
@@ -20,17 +21,27 @@ class Game:
             self.settings= json.load(f)
 
         #contains world content
+        #TODO: finish this
         world= game_status.game_status['world']
         bg= game_status.game_status['bg']
         w, h= self.settings['w'], self.settings['h']
         #TODO: use inventory
         inventory= game_status.game_status['inventory']
 
+        #TODO finish this
+        #creates game objects for example player
+        world= [globals()[game_status.game_status['world'][0]['class_name']](
+                game_status.game_status['world'][0]['pos'],
+                game_status.game_status['world'][0]['object_parameters']['texture'],
+                game_status.game_status['world'][0]['object_parameters']['scale'],
+                )]
+        
         #creates engine object
         self.engine= Engine(w, h, title= '', bg_img= os.path.join(dirname, 'Assets', 'Images', 'grass.png'), world= world)
 
         #creates pygame clock object
         self.clock= pg.time.Clock()
+
     #game loop
     def loop(self):
         while True:

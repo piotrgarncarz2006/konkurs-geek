@@ -16,7 +16,6 @@ class Engine:
         self.w= w
         self.h= h
         self.bg_img= pg.image.load(bg_img)
-        self.loadImages(world)
         self.world= world
 
         #initializes pygame
@@ -26,20 +25,18 @@ class Engine:
         pg.display.set_caption(title)
     #moves viewport by moving it's content
     def mv_viewport(self, x, y):
+        #TODO: modify and finish this
         for e in self.world:
             e.x, e.y= x+e.x, y+ e.y
     def drawBgImage(self):
+        #TODO: modify and finish this
         for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
             for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
                 self.win.blit(self.bg_img, (x, y))
-    #loads images that is inside a list
-    def loadImages(self, elements):
-        for e in elements:
-            e['img']= pg.image.load(e['img'])
     #draws content from list
     def draw(self, elements):
         for e in elements:
-            self.win.blit(e['img'], e['pos'])
+            self.win.blit(e.getImg(), e.getPos())
     #renders content
     def render(self):
         self.drawBgImage()

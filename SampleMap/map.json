@@ -1,18 +1,18 @@
 {
-	"bg": "{}/Assets/Images/grass.png",
+	"bg": "/Assets/Images/grass.png",
 	"inventory": {},
 	"world": [
 		{
 			"pos": {"x": 20, "y": 20},
-			"img": "{}/Assets/Images/player_front.gif",
 			"class_name": "Player",
+			"name": "player",
 			"object_parameters": {
+				"scale": 5,
 				"texture": {
-					"scale": 2.5,
-					"front": ["{}/Assets/Images/player_front.gif"],
-					"back": ["{}/Assets/Images/player_back.gif"],
-					"left": ["{}/Assets/Images/player_left.gif"],
-					"right": ["{}/Assets/Images/player_right.gif"]
+					"front": ["/Assets/Images/player_front.png"],
+					"back": ["/Assets/Images/player_back.png"],
+					"left": ["/Assets/Images/player_left.png"],
+					"right": ["/Assets/Images/player_right.png"]
 				}
 			}
 		}
