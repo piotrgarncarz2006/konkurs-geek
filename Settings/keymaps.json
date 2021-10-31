@@ -1,2 +1,6 @@
 {
+	"forward": "w",
+	"back": "s",
+	"left": "a",
+	"right": "d"
 }

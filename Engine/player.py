@@ -1,4 +1,5 @@
 from character import *
 
 class Player(Character):
-    pass
+    def forever(self):
+        pass

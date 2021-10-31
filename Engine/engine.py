@@ -28,18 +28,24 @@ class Engine:
         #TODO: modify and finish this
         for e in self.world:
             e.x, e.y= x+e.x, y+ e.y
-    def drawBgImage(self):
+    def drawBg(self):
         #TODO: modify and finish this
         for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
             for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
                 self.win.blit(self.bg_img, (x, y))
+    #executes forever functions inside world objects
+    def executeForeverFuncs(self):
+        for e in self.world:
+            e.forever()
     #draws content from list
     def draw(self, elements):
         for e in elements:
             self.win.blit(e.getImg(), e.getPos())
     #renders content
     def render(self):
-        self.drawBgImage()
+        self.executeForeverFuncs()
+
+        self.drawBg()
         #draws world
         self.draw(self.world)
 

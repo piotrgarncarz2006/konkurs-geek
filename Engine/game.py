@@ -20,37 +20,56 @@ class Game:
         with open(os.path.join(dirname, 'Settings', settings_file), 'r') as f:
             self.settings= json.load(f)
 
+        self.convertKeymaps()
+
+        terrain= game_status.game_status['world']
         #contains world content
-        #TODO: finish this
-        world= game_status.game_status['world']
+        world= []
         bg= game_status.game_status['bg']
         w, h= self.settings['w'], self.settings['h']
         #TODO: use inventory
+        #TODO: move inventory into player class/object
         inventory= game_status.game_status['inventory']
 
-        #TODO finish this
-        #creates game objects for example player
-        world= [globals()[game_status.game_status['world'][0]['class_name']](
-                game_status.game_status['world'][0]['pos'],
-                game_status.game_status['world'][0]['object_parameters']['texture'],
-                game_status.game_status['world'][0]['object_parameters']['scale'],
-                )]
+        #creates game objects for example player and adds world content
+        for i in range(len(terrain)):
+            world.append(
+                globals()[terrain[i]['class_name']](
+                    terrain[i]['pos'],
+                    terrain[i]['object_parameters']['texture'],
+                    terrain[i]['object_parameters']['scale'],
+                    )
+                )
         
         #creates engine object
-        self.engine= Engine(w, h, title= '', bg_img= os.path.join(dirname, 'Assets', 'Images', 'grass.png'), world= world)
+        self.engine= Engine(
+                w, 
+                h, 
+                title= '', 
+                bg_img= os.path.join(dirname, 'Assets', 'Images', 'grass.png'), 
+                world= world, 
+                )
 
         #creates pygame clock object
         self.clock= pg.time.Clock()
 
+    def convertKeymaps(self):
+        for k in self.keymaps:
+            self.keymaps[k]= pg.key.key_code(self.keymaps[k])
     #game loop
     def loop(self):
         while True:
-            #handles close window event
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    sys.exit()
             #renders content
             self.engine.render()
+
+            #handles close window event
+            for event in pg.event.get():
+                if event.type== pg.QUIT:
+                    sys.exit()
+                if event.type== pg.KEYDOWN:
+                    if event.key== self.keymaps['forward']:
+                        print('forward')
+
             #enforcing fps
             self.clock.tick(60)
 
