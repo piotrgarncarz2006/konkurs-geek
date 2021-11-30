@@ -27,19 +27,29 @@ class Game:
         world= []
         bg= game_status.game_status['bg']
         w, h= self.settings['w'], self.settings['h']
-        #TODO: use inventory
-        #TODO: move inventory into player class/object
         inventory= game_status.game_status['inventory']
 
         #creates game objects for example player and adds world content
         for i in range(len(terrain)):
-            world.append(
-                globals()[terrain[i]['class_name']](
-                    terrain[i]['pos'],
-                    terrain[i]['object_parameters']['texture'],
-                    terrain[i]['object_parameters']['scale'],
+            if terrain[i]['name']!= 'player':
+                world.append(
+                    globals()[terrain[i]['class_name']](
+                        terrain[i]['pos'],
+                        terrain[i]['object_parameters']['texture'],
+                        terrain[i]['object_parameters']['scale'],
+                        []
+                        )
                     )
-                )
+            else:
+                world.append(
+                    globals()[terrain[i]['class_name']](
+                        terrain[i]['pos'],
+                        terrain[i]['object_parameters']['texture'],
+                        terrain[i]['object_parameters']['scale'],
+                        inventory
+                        )
+                    )
+                
         bg_formatted= []
         #loads background images
         for i in bg:

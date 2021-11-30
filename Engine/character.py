@@ -9,7 +9,7 @@ def formatImage(image_path):
     image_path= image_path.format(dirname)
 
 class Character:
-    def __init__(self, pos, texture, scale):
+    def __init__(self, pos, texture, scale, inventory):
         print('character init')
         #TODO: finish this
 
@@ -18,6 +18,7 @@ class Character:
         self.texture= texture
         self.loadImages(self.texture)
         self.img= self.texture['front'][0]
+        self.inventory= inventory
 
     def getImg(self):
         return self.img
