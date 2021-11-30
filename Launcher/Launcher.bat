@@ -1,2 +1,0 @@
-cd Launcher
-npm start

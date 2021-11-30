@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -n "Checking dependencies... "
+echo -n "Sprawdzanie zaleznosci... "
 
 for name in node python3 pip3
 do
@@ -9,6 +9,6 @@ done
 
 [[ $deps -ne 1 ]] && echo "OK" || { echo -en "\nInstall the above and rerun this script\n";exit 1; }
 
-echo "Installing python libraries... "
+echo "Instalowanie bibliotek python... "
 pip3 install pygame
 echo "OK"

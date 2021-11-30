@@ -30,6 +30,7 @@ class Engine:
             e.x, e.y= x+e.x, y+ e.y
     def drawBg(self):
         #TODO: modify and finish this
+        #TODO: stop using numpy
         for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
             for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
                 self.win.blit(self.bg_img, (x, y))
