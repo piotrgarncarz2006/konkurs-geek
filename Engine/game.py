@@ -11,7 +11,7 @@ class Game_status:
         file_name= argv
         with open(os.path.join(dirname, file_name), 'r') as f:
             self.game_status= json.load(f)
-        self.game_status['bg']= self.game_status['bg'].format(dirname)
+        # self.game_status['bg']= self.game_status['bg'].format(dirname)
 
 class Game:
     def __init__(self, game_status, keymaps_file, settings_file):
@@ -40,14 +40,24 @@ class Game:
                     terrain[i]['object_parameters']['scale'],
                     )
                 )
+        bg_new= []
+        #loads background images
+        for i in bg:
+            print(dirname+ i['img'])
+            img= pg.image.load(dirname+ i['img'])
+            img= pg.transform.scale( img, (img.get_width()* i['scale'], img.get_height()* i['scale']) )
+            bg_new.append({
+                'img': img,
+                'pos': Vector2(i['pos']['x'], i['pos']['y'])
+            })
         
         #creates engine object
         self.engine= Engine(
-                w, 
-                h, 
-                title= '', 
-                bg_img= os.path.join(dirname, 'Assets', 'Images', 'grass.png'), 
-                world= world, 
+                w,
+                h,
+                title= '',
+                bg= bg_new, 
+                world= world,
                 )
 
         #creates pygame clock object

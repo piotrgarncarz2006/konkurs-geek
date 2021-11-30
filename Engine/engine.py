@@ -12,10 +12,10 @@ colors= {
         }
 
 class Engine:
-    def __init__(self, w, h, title, bg_img, world):
+    def __init__(self, w, h, title, bg, world):
         self.w= w
         self.h= h
-        self.bg_img= pg.image.load(bg_img)
+        self.bg= bg
         self.world= world
 
         #initializes pygame
@@ -31,17 +31,22 @@ class Engine:
     def drawBg(self):
         #TODO: modify and finish this
         #TODO: stop using numpy
-        for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
-            for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
-                self.win.blit(self.bg_img, (x, y))
+        #  for x in np.arange(0, self.w+ self.bg_img.get_width(), self.bg_img.get_width()):
+        #     for y in np.arange(0, self.h+ self.bg_img.get_height(), self.bg_img.get_height()):
+        #         self.win.blit(self.bg_img, (x, y))
+        self.draw(self.bg, False)
     #executes forever functions inside world objects
     def executeForeverFuncs(self):
         for e in self.world:
             e.forever()
     #draws content from list
-    def draw(self, elements):
-        for e in elements:
-            self.win.blit(e.getImg(), e.getPos())
+    def draw(self, elements, isObject=True):
+        if isObject:
+            for e in elements:
+                self.win.blit(e.getImg(), e.getPos())
+        else:
+            for e in elements:
+                self.win.blit(e['img'], e['pos'])
     #renders content
     def render(self):
         self.executeForeverFuncs()
