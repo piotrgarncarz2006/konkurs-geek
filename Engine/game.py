@@ -40,13 +40,13 @@ class Game:
                     terrain[i]['object_parameters']['scale'],
                     )
                 )
-        bg_new= []
+        bg_formatted= []
         #loads background images
         for i in bg:
             print(dirname+ i['img'])
             img= pg.image.load(dirname+ i['img'])
             img= pg.transform.scale( img, (img.get_width()* i['scale'], img.get_height()* i['scale']) )
-            bg_new.append({
+            bg_formatted.append({
                 'img': img,
                 'pos': Vector2(i['pos']['x'], i['pos']['y'])
             })
@@ -56,7 +56,7 @@ class Game:
                 w,
                 h,
                 title= '',
-                bg= bg_new, 
+                bg= bg_formatted, 
                 world= world,
                 )
 
